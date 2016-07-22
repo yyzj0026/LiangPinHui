@@ -20,7 +20,7 @@ import java.util.List;
  * Created by Administrator on 2016/7/16.
  * 这里边获取url时可以根据action提出来个方法
  */
-public class JsonUtils {
+public class JsonUtils_FirstPage {
     private String show_album1 ="http://uuyichu.com/api/goods/album_v4/?alias=";     //action的类别不同，地址不同
     private String show_album2 ="&cate=-1&brand=-1&condition=-1&sale=0&source=0&page=1";
     private String show_ht_list ="http://uuyichu.com/haibaicai/spu/list?page=1&alias=";
@@ -34,7 +34,7 @@ public class JsonUtils {
 
     private HashMap<String,List<Album>> map;
 
-    public void getJsonStr(String jsonStr){
+    public void getJsonStr(String jsonStr){    //这是总的获取json
         try {
             map=new HashMap<>();
 

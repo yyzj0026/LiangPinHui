@@ -3,7 +3,7 @@ package com.winds.liangpinhui;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.winds.liangpinhui.jsonUtils.JsonUtils;
+import com.winds.liangpinhui.jsonUtils.JsonUtils_FirstPage;
 import com.winds.liangpinhui.models.Album;
 import com.winds.liangpinhui.models.Banner;
 import com.winds.liangpinhui.models.Dot;
@@ -17,14 +17,15 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/7/16.
  */
-public class MyAsyncTask extends AsyncTask<String,Void,JsonUtils>{
+public class MyAsyncTask extends AsyncTask<String,Void,JsonUtils_FirstPage>{
+    private String whichPage="first";
     @Override
-    protected JsonUtils doInBackground(String... strings) {
+    protected JsonUtils_FirstPage doInBackground(String... strings) {
         byte[] b=HttpUtils.getWebCache(strings[0]);
         try {
             String jsonStr=new String(b,"utf-8");
 
-            JsonUtils json=new JsonUtils();
+            JsonUtils_FirstPage json=new JsonUtils_FirstPage();
             json.getJsonStr(jsonStr);
 
             return json;
@@ -36,7 +37,7 @@ public class MyAsyncTask extends AsyncTask<String,Void,JsonUtils>{
     }
 
     @Override
-    protected void onPostExecute(JsonUtils json) {
+    protected void onPostExecute(JsonUtils_FirstPage json) {
         super.onPostExecute(json);
 
         List<Banner> banners=json.getBannerList();
