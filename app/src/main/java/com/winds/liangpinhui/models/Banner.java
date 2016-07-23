@@ -6,10 +6,12 @@ package com.winds.liangpinhui.models;
 public class Banner {
     private String bannerUrl;
     private String image;
+    private String alias;
 
-    public Banner(String bannerUrl, String image) {
+    public Banner(String bannerUrl, String image, String alias) {
         this.bannerUrl = bannerUrl;
         this.image = image;
+        this.alias = alias;
     }
 
     public String getBannerUrl() {
@@ -28,11 +30,20 @@ public class Banner {
         this.image = image;
     }
 
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
     @Override
     public String toString() {
         return "Banner{" +
                 "bannerUrl='" + bannerUrl + '\'' +
                 ", image='" + image + '\'' +
+                ", alias='" + alias + '\'' +
                 '}';
     }
 }

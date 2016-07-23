@@ -4,24 +4,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.winds.liangpinhui.dao.TiaoZao_Dao;
+
 public class MainActivity extends AppCompatActivity {
+    private TiaoZao_Dao dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        dao=new TiaoZao_Dao(this);
     }
 
     public void clickButton(View view){
         switch (view.getId()){
             case R.id.first_btn:
-                MyAsyncTask mat=new MyAsyncTask();
+                MyAsyncTask mat=new MyAsyncTask(dao);
                 mat.execute("http://uuyichu.com/api/home/data/v4");
                 break;
             case R.id.second_btn:
-                MyAsyncTask1 mat1=new MyAsyncTask1();
+                MyAsyncTask1 mat1=new MyAsyncTask1(dao);
                 mat1.execute("http://uuyichu.com/api/goods/list_v4/?cate=-1&brand=-1&condition=-1&sale=0&source=0&page=1");
                 break;
             case R.id.goodDetail_btn:

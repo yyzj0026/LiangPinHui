@@ -10,19 +10,23 @@ public class Album {
     private String tag_bg;
     private String album_image;
     private String albumUrl;
+    private String album_action_alias;
 
+    private String goods_id;
     private String price;
     private String name;
     private String image;
     private String itemUrl;
 
-    public Album(String title, String subTitle, String tag, String tag_bg, String album_image, String albumUrl, String price, String name, String image, String itemUrl) {
+    public Album(String title, String subTitle, String tag, String tag_bg, String album_image, String albumUrl,String album_action_alias,String goods_id, String price, String name, String image, String itemUrl) {
         this.title = title;
         this.subTitle = subTitle;
         this.tag = tag;
         this.tag_bg = tag_bg;
         this.album_image = album_image;
         this.albumUrl = albumUrl;
+        this.album_action_alias=album_action_alias;
+        this.goods_id=goods_id;
         this.price = price;
         this.name = name;
         this.image = image;
@@ -109,6 +113,22 @@ public class Album {
         this.itemUrl = itemUrl;
     }
 
+    public String getGoods_id() {
+        return goods_id;
+    }
+
+    public void setGoods_id(String goods_id) {
+        this.goods_id = goods_id;
+    }
+
+    public String getAlbum_action_alias() {
+        return album_action_alias;
+    }
+
+    public void setAlbum_action_alias(String album_action_alias) {
+        this.album_action_alias = album_action_alias;
+    }
+
     @Override
     public String toString() {
         return "Album{" +
@@ -118,6 +138,8 @@ public class Album {
                 ", tag_bg='" + tag_bg + '\'' +
                 ", album_image='" + album_image + '\'' +
                 ", albumUrl='" + albumUrl + '\'' +
+                ", album_action_alias='" + album_action_alias + '\'' +
+                ", goods_id='" + goods_id + '\'' +
                 ", price='" + price + '\'' +
                 ", name='" + name + '\'' +
                 ", image='" + image + '\'' +

@@ -34,6 +34,7 @@ public class JsonUtils_SecondPage {
                 String sell_price=object.getString("sell_price");   //现售价格
                 String cover=object.getString("cover");   //图片地址
                 String id=object.getString("id");  //网页跳转所需id
+                String is_onsale=object.getString("is_onsale");
 
 //                String brand_id=object.getString("brand_id");  //品牌id
 //                String cate_id=object.getString("cate_id");   //类别id
@@ -41,7 +42,7 @@ public class JsonUtils_SecondPage {
 
                 String goodsUrl=url+id;
 
-                Goods goods=new Goods(goods_name,brand_name,original_price,sell_price,cover,goodsUrl);
+                Goods goods=new Goods(id,goods_name,brand_name,original_price,sell_price,cover,goodsUrl,is_onsale);
                 goodsList.add(goods);
 
                 Log.i("goods",goods.toString());

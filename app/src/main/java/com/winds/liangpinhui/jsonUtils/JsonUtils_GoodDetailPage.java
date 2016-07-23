@@ -14,7 +14,7 @@ import java.util.HashMap;
  * Created by Administrator on 2016/7/22.
  */
 public class JsonUtils_GoodDetailPage {
-    private String user_url1="http://uuyichu.com/api/goods/user_v4/?user_id=";
+    private String user_url1="http://uuyichu.com/api/goods/user_v4/?user_id=";   //商家详情跳转页
     private String user_url2="&page=1";
     private HashMap<String,String> detail_params_map;
     private String[] goods_pics_array;
@@ -29,6 +29,7 @@ public class JsonUtils_GoodDetailPage {
             JSONObject goods_obj=detail.getJSONObject("goods_obj");
 
             //goods_obj里内容
+            String good_id=goods_obj.getString("id");
             String original_price=goods_obj.getString("original_price");
             JSONArray detail_params=goods_obj.getJSONArray("detail_params");
             JSONArray goods_pics=goods_obj.getJSONArray("goods_pics");
@@ -61,7 +62,7 @@ public class JsonUtils_GoodDetailPage {
             String description=brand_obj.getString("description");
             Brand brand=new Brand(code,name,logo_url,description);
 
-            String img_h=img_size.getString("h");    //图片尺寸，img_size内容
+            String img_h=img_size.getString("h");    //图片尺寸，img_size内容,这俩也可以不要
             String img_w=img_size.getString("w");
 
             String nickname=from_user.getString("nickname");   //商家信息，from_user内容
@@ -73,7 +74,7 @@ public class JsonUtils_GoodDetailPage {
             String user_url=user_url1+id+user_url2;
             From_user user=new From_user(nickname,id,authenticated,publish_count,sold_count,headimg,user_url);
 
-            goodDetail=new GoodDetail(original_price,detail_params_map,goods_pics_array,sell_price,brand,purity_desc,publisher_desc, img_h,img_w,wx_kefu,goods_name,user,condition_dis);
+            goodDetail=new GoodDetail(good_id,original_price,detail_params_map,goods_pics_array,sell_price,brand,purity_desc,publisher_desc, img_h,img_w,wx_kefu,goods_name,user,condition_dis);
         } catch (JSONException e) {
             e.printStackTrace();
         }

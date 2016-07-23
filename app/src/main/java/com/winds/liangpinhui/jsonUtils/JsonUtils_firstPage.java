@@ -33,6 +33,7 @@ public class JsonUtils_FirstPage {
     private List<FlashSale> flashSaleList;
 
     private HashMap<String,List<Album>> map;
+    private int album_tag=1;
 
     public void getJsonStr(String jsonStr){    //这是总的获取json
         try {
@@ -82,7 +83,7 @@ public class JsonUtils_FirstPage {
                     bannerUrl= show_ht_list +alias;
                 }
 
-                Banner banner=new Banner(bannerUrl,image);
+                Banner banner=new Banner(bannerUrl,image,alias);
                 Log.i("banner",banner.toString());
                 bannerList.add(banner);
             }
@@ -114,7 +115,7 @@ public class JsonUtils_FirstPage {
                     dotUrl= show_album1 +alias+ show_album2;   //该dot的连接
                 }
 
-                Dot dot=new Dot(dotUrl,image,title);
+                Dot dot=new Dot(alias,dotUrl,image,title);
                 Log.i("dot","dot------"+dot.toString());
                 dotList.add(dot);
             }
@@ -149,7 +150,7 @@ public class JsonUtils_FirstPage {
                     recommendUrl= show_detail +goods_id;   //该商品的连接
                 }
 
-                Recommend recommend=new Recommend(title,icon,price,recommendName,image,recommendUrl);
+                Recommend recommend=new Recommend(title,icon,goods_id,price,recommendName,image,recommendUrl);
                 Log.i("recommend","recommend------"+recommend.toString());
                 recommendList.add(recommend);
             }
@@ -182,14 +183,16 @@ public class JsonUtils_FirstPage {
                 String begin=time_limit.getString("begin");
                 String end=time_limit.getString("end");
 
+                String goods_id=null;
                 if(subAction.equals("show_detail")){
-                    String goods_id=action.getString("goods_id");//商品编号
+                    goods_id=action.getString("goods_id");//商品编号
                     flashSaleUrl= show_detail +goods_id;   //该商品的连接
                 }else if(subAction.equals("show_web")){
+                    goods_id=String.valueOf(11);
                     flashSaleUrl=action.getString("url");   //这个应该是直接给出了地址，用webView应该就可以
                 }
 
-                FlashSale flashSale=new FlashSale(title,icon,subAction,image,begin,end,flashSaleUrl);
+                FlashSale flashSale=new FlashSale(title,icon,goods_id,subAction,image,begin,end,flashSaleUrl);
                 Log.i("flashSale","flashSale------"+flashSale.toString());
                 flashSaleList.add(flashSale);
             }
@@ -247,11 +250,12 @@ public class JsonUtils_FirstPage {
                 }
                 Log.i("album","itemUrl-----"+itemUrl);
 
-                Album album1=new Album(album_action_title,album_sub_title,tag,tag_bg,album_image,albumUrl,price,name,image,itemUrl);
+                Album album1=new Album(album_action_title,album_sub_title,tag,tag_bg,album_image,albumUrl,album_action_alias,album_tag+"_"+goods_id,price,name,image,itemUrl);
                 list.add(album1);
             }
             Log.i("album",album_action_title+"----------"+list.size());
             map.put(album_action_alias,list);
+            album_tag++;
         } catch (JSONException e) {
             e.printStackTrace();
         }

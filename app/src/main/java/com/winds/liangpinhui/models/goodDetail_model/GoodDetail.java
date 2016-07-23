@@ -6,7 +6,8 @@ import java.util.HashMap;
 /**
  * Created by Administrator on 2016/7/22.
  */
-public class GoodDetail {
+public class GoodDetail {   //这个类不需要建表
+    private String good_id;
     private String original_price;
     private HashMap<String,String> detail_params; //商品概述
     private String[] goods_pics;    //浏览图片
@@ -21,7 +22,8 @@ public class GoodDetail {
     private From_user user;  //商家信息
     private String condition_dis;  //成色
 
-    public GoodDetail(String original_price, HashMap<String, String> detail_params, String[] goods_pics, String sell_price, Brand brand, String purity_desc, String publisher_desc, String img_h, String img_w, String wx_kefu, String goods_name, From_user user, String condition_dis) {
+    public GoodDetail(String good_id,String original_price, HashMap<String, String> detail_params, String[] goods_pics, String sell_price, Brand brand, String purity_desc, String publisher_desc, String img_h, String img_w, String wx_kefu, String goods_name, From_user user, String condition_dis) {
+        this.good_id=good_id;
         this.original_price = original_price;
         this.detail_params = detail_params;
         this.goods_pics = goods_pics;
@@ -35,6 +37,14 @@ public class GoodDetail {
         this.goods_name = goods_name;
         this.user = user;
         this.condition_dis = condition_dis;
+    }
+
+    public String getGood_id() {
+        return good_id;
+    }
+
+    public void setGood_id(String good_id) {
+        this.good_id = good_id;
     }
 
     public String getOriginal_price() {
@@ -144,7 +154,8 @@ public class GoodDetail {
     @Override
     public String toString() {
         return "GoodDetail{" +
-                "original_price='" + original_price + '\'' +
+                "good_id='" + good_id + '\'' +
+                ", original_price='" + original_price + '\'' +
                 ", detail_params=" + detail_params +
                 ", goods_pics=" + Arrays.toString(goods_pics) +
                 ", sell_price='" + sell_price + '\'' +
