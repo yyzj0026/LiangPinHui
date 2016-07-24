@@ -2,6 +2,7 @@ package com.winds.liangpinhui.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -11,6 +12,10 @@ import com.winds.liangpinhui.models.Dot;
 import com.winds.liangpinhui.models.FlashSale;
 import com.winds.liangpinhui.models.Goods;
 import com.winds.liangpinhui.models.Recommend;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Administrator on 2016/6/24.
@@ -178,75 +183,75 @@ public class TiaoZao_Dao {
         return false;
     }
 
-//    public List<HashMap<String,Object>> getAllNewsList(String table,String[] selectColumn) {
-//        Log.i("aaa","执行查询");
-//        SQLiteDatabase db = null;
-//        Cursor cursor = null;
-//        List<HashMap<String,Object>> data = new ArrayList<HashMap<String,Object>>();
-//        try {
-//
-//            db = helper.getReadableDatabase();
-//            cursor=db.query(table,selectColumn,null,null,null,null,"id desc");
-//            Log.i("aaa","正在查询");
-//            while (cursor.moveToNext()) {
-//                HashMap<String,Object> map=new HashMap<>();
-//
-//                for(int i=0;i<selectColumn.length;i++){
-//                    String columnName=selectColumn[i];
-//                    String columnValue=cursor.getString(cursor.getColumnIndex(columnName));
-//                    map.put(columnName,columnValue);
-//                }
-//                data.add(map);
-//            }
-//            Log.i("aaa",data.toString());
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            Log.i("aaa","query执行错误");
-//        } finally {
-//            if (cursor != null && !cursor.isClosed()) { // &&短路与
-//                cursor.close();
-//            }
-//            if (db != null && db.isOpen()) { // &&短路与
-//                db.close();
-//            }
-//        }
-//
-//        return data;
-//    }
-//    public boolean update(Info info,String table) {
-//        SQLiteDatabase db = null;
-//        try {
-//            db = helper.getReadableDatabase();
-//            ContentValues values = new ContentValues();
-//            values.put("litpic",info.getLitpic());
-//
-//            int rowcount = db.update(table, values, "id=?",
-//                    new String[] { info.getId() + "" });
-//            return rowcount > 0;
-//        } catch (Exception e) {
-//        } finally {
-//            if (db != null && db.isOpen()) {
-//                db.close();
-//            }
-//        }
-//        return false;
-//    }
-//    public boolean deleteAll(String table){
-//        SQLiteDatabase db = null;
-//        try {
-//            db = helper.getReadableDatabase();
-//            int rowcount = db.delete(table, null,null);
-//            Log.i("aaa", rowcount + "---------");
-//            return rowcount > 0;
-//        } catch (Exception e) {
-//            Log.i("aaa","delete删除失败");
-//        } finally {
-//            if (db != null && db.isOpen()) {
-//                db.close();
-//            }
-//        }
-//        return false;
-//    }
+    public List<HashMap<String,Object>> getTiaoZao(String table, String[] selectColumn,String selection,String[] selectionArgs,String orderBy) {  //table 查询的表，
+        SQLiteDatabase db = null;                                                                                                                 //selection 查询条件,不能给null
+        Cursor cursor = null;                                                                                                                     //selectionArgs 查询条件的参数
+        List<HashMap<String,Object>> data = new ArrayList<HashMap<String,Object>>();                                                              //orderBy  排序desc,降序;升序就给null即可,默认的
+        try {
+
+            db = helper.getReadableDatabase();
+            cursor=db.query(table,selectColumn,selection,selectionArgs,null,null,orderBy);
+            Log.i("database","正在查询");
+            while (cursor.moveToNext()) {
+                HashMap<String,Object> map=new HashMap<>();
+
+                for(int i=0;i<selectColumn.length;i++){
+                    String columnName=selectColumn[i];
+                    String columnValue=cursor.getString(cursor.getColumnIndex(columnName));
+                    map.put(columnName,columnValue);
+                }
+                data.add(map);
+            }
+            Log.i("database",data.toString());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.i("aaa","query执行错误");
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
+            if (db != null && db.isOpen()) {
+                db.close();
+            }
+        }
+
+        return data;
+    }
+
+    public boolean updateImg(String table,String imgPath,String selection,String[] selectArgs) {   //主要用来改变数据库中图片地址
+        SQLiteDatabase db = null;                                                                  //更新条件:selection
+        try {                                                                                      //更新条件参数:selectArgs
+            db = helper.getReadableDatabase();                                                     //最新的本地图片地址:imgPath
+            ContentValues values = new ContentValues();
+            values.put("litpic",imgPath);
+
+            int rowcount = db.update(table, values, selection, selectArgs);
+            return rowcount > 0;
+        } catch (Exception e) {
+            Log.i("database","更新失败");
+        } finally {
+            if (db != null && db.isOpen()) {
+                db.close();
+            }
+        }
+        return false;
+    }
+    public boolean deleteAll(String table){
+        SQLiteDatabase db = null;
+        try {
+            db = helper.getReadableDatabase();
+            int rowcount = db.delete(table, null,null);
+            Log.i("aaa", rowcount + "---------");
+            return rowcount > 0;
+        } catch (Exception e) {
+            Log.i("aaa","delete删除失败");
+        } finally {
+            if (db != null && db.isOpen()) {
+                db.close();
+            }
+        }
+        return false;
+    }
 
 }

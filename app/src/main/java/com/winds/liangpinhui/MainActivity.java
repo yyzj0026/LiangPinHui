@@ -30,6 +30,16 @@ public class MainActivity extends AppCompatActivity {
             case R.id.goodDetail_btn:
                 MyAsyncTask2 mat2=new MyAsyncTask2();
                 mat2.execute("http://uuyichu.com/api/goods/detail_v4/34345");
+                break;
+            case R.id.find_btn:
+                new Thread(){
+                    public void run(){
+                        String[] select={"goods_id"};
+                        dao.getTiaoZao("recommend",select,null,null,null);
+                    }
+                }.start();
+                break;
+
         }
     }
 }
