@@ -8,10 +8,10 @@ import java.util.HashMap;
  */
 public class GoodDetail {   //这个类不需要建表
     private String good_id;
-    private String original_price;
+    private String original_price;  //原始价格
     private HashMap<String,String> detail_params; //商品概述
     private String[] goods_pics;    //浏览图片
-    private String sell_price;
+    private String sell_price;   //现售价格
     private Brand brand;
     private String purity_desc; //商品概述前语
     private String publisher_desc;   //卖家寄语
@@ -169,5 +169,13 @@ public class GoodDetail {   //这个类不需要建表
                 ", user=" + user +
                 ", condition_dis='" + condition_dis + '\'' +
                 '}';
+    }
+
+    public String getDiscount(){
+        int original=Integer.parseInt(original_price);
+        int sell=Integer.parseInt(sell_price);
+        int discount=(original-sell)*100/original;
+
+        return "节省了"+discount+"%";
     }
 }

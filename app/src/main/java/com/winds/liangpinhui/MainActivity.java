@@ -1,5 +1,6 @@
 package com.winds.liangpinhui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
                 mat1.execute("http://uuyichu.com/api/goods/list_v4/?cate=-1&brand=-1&condition=-1&sale=0&source=0&page=1");
                 break;
             case R.id.goodDetail_btn:
-                MyAsyncTask2 mat2=new MyAsyncTask2();
-                mat2.execute("http://uuyichu.com/api/goods/detail_v4/34345");
+//                MyAsyncTask2 mat2=new MyAsyncTask2();
+//                mat2.execute("http://uuyichu.com/api/goods/detail_v4/34345");
                 break;
             case R.id.find_btn:
                 new Thread(){
@@ -39,7 +40,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }.start();
                 break;
-
+            case R.id.goodDetail_activity_btn:
+                Intent intent=new Intent(this,GoodDetailActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 }

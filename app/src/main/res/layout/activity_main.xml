@@ -30,5 +30,11 @@
         android:layout_height="wrap_content"
         android:text="查询"
         android:onClick="clickButton"/>
+    <Button
+        android:id="@+id/goodDetail_activity_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转到商品详情"
+        android:onClick="clickButton"/>
 
 </LinearLayout>

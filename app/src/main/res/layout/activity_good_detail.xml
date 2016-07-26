@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.winds.liangpinhui.GoodDetailActivity"
+    android:background="#33ffff00">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/gd_activity_return_btn"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:backgroundTint="#000000"
+        app:elevation="0dp"
+        app:fabSize="mini"
+        android:src="@drawable/title_back_icon_white"/>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/gd_activity_share_btn"
+        android:layout_marginTop="11dp"
+        android:layout_marginRight="8dp"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_alignParentRight="true"
+        app:elevation="0dp"
+        app:backgroundTint="#000000"
+        app:fabSize="mini"
+        android:src="@drawable/title_icon_share_rect_white"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+        <include layout="@layout/good_detail_bottom"/>
+    </LinearLayout>
+</RelativeLayout>
